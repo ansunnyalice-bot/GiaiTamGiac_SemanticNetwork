@@ -1,0 +1,1044 @@
+﻿<Window x:Class="demo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        WindowState="Maximized"
+        ResizeMode="NoResize" Height="800" Width="1200"
+        Loaded="Window_Loaded">
+    <Window.Resources>
+        <!--Cấu hình border-->
+        <Style x:Key="style_border" TargetType="Border">
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="CornerRadius" Value="10" ></Setter>
+            <Setter Property="BorderThickness" Value="2" ></Setter>
+            <Setter Property="BorderBrush" Value="White" ></Setter>
+            <Setter Property="Margin" Value="20, 20, 20, 20"></Setter>
+        </Style>
+
+        <!--Cấu hình chung cho radio button-->
+        <Style x:Key="style_radio_button" TargetType="RadioButton">
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="10, 10, 10, 10"></Setter>
+        </Style>
+
+        <!--Cấu hình chung cho textblock-->
+        <Style x:Key="style_text_block" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="FontWeight" Value="Normal"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
+
+        <!--Cấu hình chung cho text box-->
+        <Style x:Key="style_text_box" TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="10, 10, 10, 10"></Setter>
+            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="AcceptsReturn" Value="True"></Setter>
+            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto"></Setter>
+            <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"></Setter>
+        </Style>
+
+        <!--Cấu hình chung cho combobox-->
+        <Style x:Key="style_combo_box" TargetType="ComboBox">
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="10, 10, 10, 10"></Setter>
+            <Setter Property="Height" Value="40"></Setter>
+        </Style>
+
+        <!--Cấu hình chung cho checkbox-->
+        <Style x:Key="style_check_box" TargetType="CheckBox">
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="10, 10, 10, 0"></Setter>
+            <Setter Property="Height" Value="30"></Setter>
+        </Style>
+
+        <!--Cấu hình chung cho list box-->
+        <Style x:Key="style_list_box" TargetType="ListBox">
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="10, 15, 10, 15"></Setter>
+            <Setter Property="Padding" Value="10"></Setter>
+            <Setter Property="Height" Value="40"></Setter>
+        </Style>
+
+        <!--Cấu hình chung cho group box-->
+        <Style x:Key="style_group_box" TargetType="GroupBox">
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="10, 10, 10, 10"></Setter>
+            <Setter Property="Height" Value="40"></Setter>
+        </Style>
+
+        <!--Cấu hình chung cho button-->
+        <Style x:Key="style_button" TargetType="Button">
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="10, 10, 10, 10"></Setter>
+            <Setter Property="Width" Value="150"></Setter>
+        </Style>
+
+        <!--Cấu hình chung cho tab item-->
+        <Style x:Key="style_tab_item" TargetType="TabItem">
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        </Style>
+
+        <!--Cấu hình chung cho menu-->
+        <Style x:Key="style_menu" TargetType="Menu">
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        </Style>
+
+        <!--Cấu hình chung cho menu-->
+        <Style x:Key="style_toolbar" TargetType="ToolBar">
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
+
+        <!--Cấu hình chung cho datagrid-->
+        <Style x:Key="style_data_grid" TargetType="DataGrid">
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="AutoGenerateColumns" Value="False"></Setter>
+            <!--Không tự sinh cột từ datasource-->
+            <Setter Property="CanUserAddRows" Value="False"></Setter>
+            <!--Không cho người dùng thêm dòng mới-->
+            <Setter Property="CanUserDeleteRows" Value="False"></Setter>
+            <!--Không cho người dùng xóa dòng-->
+            <Setter Property="IsReadOnly" Value="True"></Setter>
+            <!--Chỉ được đọc không được thêm-->
+            <Setter Property="HeadersVisibility" Value="All"></Setter>
+            <!--Hiển thị tiêu đề cột và dòng-->
+            <Setter Property="GridLinesVisibility" Value="All"></Setter>
+            <!--Hiển thị đường kẻ ô-->
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="21*"/>
+            <ColumnDefinition Width="29*"/>
+        </Grid.ColumnDefinitions>
+        <!--Chia giao diện-->
+        <Grid Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <!--Giao diện toán học-->
+            <StackPanel Orientation="Vertical"
+                        Grid.Column="0">
+                <TextBlock Style="{StaticResource style_text_block}"
+                           Text="Bài Toán Tam Giác Sử Dụng Mạng Ngữ Nghĩa"
+                           Margin="10, 10, 10, 10"
+                           FontSize="30"
+                           Foreground="#0E199B">
+                </TextBlock>
+
+                <!--Hình ảnh và giao diện tính giá trị-->
+                <StackPanel Orientation="Horizontal">
+                    <!--Chia giao diện-->
+                    <Grid Width="587">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="/image/test.gif"
+                           Height="200"
+                               Grid.Column="0"
+                           Stretch="Uniform"
+                           Margin="10"/>
+
+                        <!--Group box tính giá trị-->
+                        <StackPanel HorizontalAlignment="Left"
+                                    Grid.Column="1">
+                            <GroupBox Header="Tính Giá Trị"
+                                      VerticalAlignment="Top"
+                                      BorderBrush="Red"
+                                      Style="{StaticResource style_group_box}" Height="191" Margin="38,10,0,0">
+                                <StackPanel HorizontalAlignment="Left">
+                                    <ComboBox x:Name="combo"  Style="{StaticResource style_combo_box}" Height="28">
+                                        <ComboBoxItem>Nữa chu vi</ComboBoxItem>
+                                        <ComboBoxItem>Diện tích</ComboBoxItem>
+                                        <ComboBoxItem>r</ComboBoxItem>
+                                        <ComboBoxItem>R</ComboBoxItem>
+
+                                    </ComboBox>
+                                    <!--Nhãn tính và text box trả kết quả-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource style_text_block}"
+                                                   Text="Kết quả: "
+                                                   Margin="10, 10, 10, 10">
+                                        </TextBlock>
+                                        <TextBox Style="{StaticResource style_text_box}"
+                                                 x:Name="txt_ketqua" Width="136"
+                                                 IsReadOnly="True" Height="25">
+                                        </TextBox>
+                                    </StackPanel>
+
+                                    <!--Button tính-->
+                                    <StackPanel Orientation="Horizontal"
+                                                HorizontalAlignment="Center">
+                                        <Button Style="{StaticResource style_button}"
+                                                Content="Tính"
+                                                Name="btn_tinh"
+                                                Width="100" Height="30" Click="btn_tinh_Click">
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+
+                <!--Các yếu tố trong tam giác-->
+                <GroupBox Style="{StaticResource style_group_box}"
+                          Header="Các Yếu Tố Trong Tam Giác"
+                          Margin="10, 10, 10, 10" Height="220"
+                          BorderBrush="Blue"
+                          HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <Grid Width="570">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <!--Group box góc-->
+                            <GroupBox Style="{StaticResource  style_group_box}"
+                                      Grid.Column="0"
+                                      Header="Góc"
+                                      Margin="5,10,5,10"
+                                      VerticalAlignment="Top" Height="165"
+                                      BorderBrush="Red">
+                                <StackPanel Orientation="Vertical">
+                                    <!--Góc A-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Grid Width="179">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Style="{StaticResource style_text_block}"
+                                                       Text="Góc A:"
+                                                       Grid.Column="0"
+                                                       Margin="5, 5, 0, 10">
+                                            </TextBlock>
+                                            <TextBox Style="{StaticResource style_text_box}"
+                                                     x:Name="txt_A"
+                                                     Grid.Column="1"
+                                                     Margin="8,8,22,7"/>
+                                        </Grid>
+                                    </StackPanel>
+
+                                    <!--Góc beta-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Grid Width="179">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Style="{StaticResource style_text_block}"
+                                                       Text="Góc B:"
+                                                       Grid.Column="0"
+                                                       Margin="5, 5, 0, 10">
+                                            </TextBlock>
+                                            <TextBox Style="{StaticResource style_text_box}"
+                                                     x:Name="txt_B"
+                                                     Grid.Column="1"
+                                                     Margin="8,8,22,7"/>
+                                        </Grid>
+                                    </StackPanel>
+
+                                    <!--Góc gamma-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Grid Width="179">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Style="{StaticResource style_text_block}"
+                                                       Text="Góc C:"
+                                                       Grid.Column="0"
+                                                       Margin="5, 5, 0, 10">
+                                            </TextBlock>
+                                            <TextBox Style="{StaticResource style_text_box}"
+                                                     x:Name="txt_C"
+                                                     Grid.Column="1"
+                                                     Margin="8,8,22,7"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <!--Group box cạnh-->
+                            <GroupBox Style="{StaticResource  style_group_box}"
+                                      Grid.Column="1"
+                                      Header="Cạnh"
+                                      Margin="5,10,5,10"
+                                      VerticalAlignment="Top" Height="165"
+                                      BorderBrush="Red">
+                                <StackPanel Orientation="Vertical">
+                                    <!--Cạnh a-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Grid Width="179">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Style="{StaticResource style_text_block}"
+                                                       Text="Cạnh a:"
+                                                       Grid.Column="0"
+                                                       Margin="5, 5, 0, 10">
+                                            </TextBlock>
+                                            <TextBox Style="{StaticResource style_text_box}"
+                                                     Name="txt_canh_a"
+                                                     Grid.Column="1"
+                                                     Margin="8,8,22,7"/>
+                                        </Grid>
+                                    </StackPanel>
+
+                                    <!--Cạnh b-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Grid Width="179">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Style="{StaticResource style_text_block}"
+                                                       Text="Cạnh b:"
+                                                       Grid.Column="0"
+                                                       Margin="5, 5, 0, 10">
+                                            </TextBlock>
+                                            <TextBox Style="{StaticResource style_text_box}"
+                                                     Name="txt_canh_b"
+                                                     Grid.Column="1"
+                                                     Margin="8,8,22,7"/>
+                                        </Grid>
+                                    </StackPanel>
+
+                                    <!--Cạnh c-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Grid Width="179">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Style="{StaticResource style_text_block}"
+                                                       Text="Cạnh c:"
+                                                       Grid.Column="0"
+                                                       Margin="5, 5, 0, 10">
+                                            </TextBlock>
+                                            <TextBox Style="{StaticResource style_text_box}"
+                                                     Name="txt_canh_c"
+                                                     Grid.Column="1"
+                                                     Margin="8,8,22,7"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <!--Group box các yếu tố khác -->
+                            <GroupBox Style="{StaticResource  style_group_box}"
+                                      Grid.Column="2"
+                                      Header="Các yếu tố khác"
+                                      Margin="5,10,5,10"
+                                      VerticalAlignment="Top" Height="165"
+                                      BorderBrush="Red">
+                                <StackPanel Orientation="Vertical">
+                                    <!--Chiều cao ha-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Grid Width="179">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Style="{StaticResource style_text_block}"
+                                                       Text="HA:"
+                                                       Grid.Column="0"
+                                                       Margin="5,9,0,0" VerticalAlignment="Top">
+                                            </TextBlock>
+                                            <TextBox Style="{StaticResource style_text_box}"
+                                                     Name="txt_ha"
+                                                     Grid.Column="1"
+                                                     Margin="8,8,22,7"/>
+                                        </Grid>
+                                    </StackPanel>
+
+                                    <!--Chiều cao hb-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <Grid Width="179">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80"></ColumnDefinition>
+                                                <ColumnDefinition Width="99*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Style="{StaticResource style_text_block}"
+                                                       Text="HB:"
+                                                       Grid.Column="0"
+                                                       Margin="5,10,0,0" Grid.ColumnSpan="2" VerticalAlignment="Top">
+                                            </TextBlock>
+                                            <TextBox Style="{StaticResource style_text_box}"
+                                                     Name="txt_hb"
+                                                     Grid.Column="1"
+                                                     Margin="8,8,22,7"/>
+                                        </Grid>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <Grid Width="179">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Style="{StaticResource style_text_block}"
+                                        Text="HC:"
+                                        Grid.Column="0"
+                                         Margin="5, 5, 0, 10">
+                                            </TextBlock>
+                                            <TextBox Style="{StaticResource style_text_box}"
+                                              Name="txt_hc"
+                                            Grid.Column="1"
+                                            Margin="8,8,22,7"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+
+                <!--Bảng quan hệ-->
+                <GroupBox Style="{StaticResource style_group_box}"
+                          Header="Bảng Quan Hệ" Height="220"
+                          BorderBrush="Green"
+                          HorizontalAlignment="Left">
+                    <Grid>
+                        <!--Bảng mô tả quan hệ-->
+                        <DataGrid Name="dg_quan_he"
+                                  Style="{StaticResource style_data_grid}"
+                                  Margin="10"
+                                  Width="550"
+                                  RowHeaderWidth="60">
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Yếu tố" Binding="{Binding YeuTo}" Width="120"/>
+                                <DataGridTextColumn Header="CT1" Binding="{Binding CT1}" Width="60"/>
+                                <DataGridTextColumn Header="CT2" Binding="{Binding CT2}" Width="60"/>
+                                <DataGridTextColumn Header="CT3" Binding="{Binding CT3}" Width="60"/>
+                                <DataGridTextColumn Header="CT4" Binding="{Binding CT4}" Width="60"/>
+                                <DataGridTextColumn Header="CT5" Binding="{Binding CT5}" Width="60"/>
+                                <DataGridTextColumn Header="CT6" Binding="{Binding CT6}" Width="60"/>
+                                <DataGridTextColumn Header="CT7" Binding="{Binding CT7}" Width="60"/>
+                                <DataGridTextColumn Header="CT8" Binding="{Binding CT8}" Width="60"/>
+                                <DataGridTextColumn Header="CT9" Binding="{Binding CT9}" Width="60"/>
+                                <DataGridTextColumn Header="CT10" Binding="{Binding CT10}" Width="60"/>
+                                <DataGridTextColumn Header="CT11" Binding="{Binding CT11}" Width="60"/>
+                                <DataGridTextColumn Header="CT12" Binding="{Binding CT12}" Width="60"/>
+                                <DataGridTextColumn Header="CT13" Binding="{Binding CT13}" Width="60"/>
+                                <DataGridTextColumn Header="CT14" Binding="{Binding CT14}" Width="60"/>
+                                <DataGridTextColumn Header="CT15" Binding="{Binding CT15}" Width="60"/>
+                                <DataGridTextColumn Header="CT16" Binding="{Binding CT16}" Width="60"/>
+                                <DataGridTextColumn Header="CT17" Binding="{Binding CT17}" Width="60"/>
+                                <DataGridTextColumn Header="CT18" Binding="{Binding CT18}" Width="60"/>
+                                <DataGridTextColumn Header="CT19" Binding="{Binding CT19}" Width="60"/>
+                                <DataGridTextColumn Header="CT20" Binding="{Binding CT20}" Width="60"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </GroupBox>
+
+                <!--Các nút hỗ trợ-->
+                <StackPanel Orientation="Horizontal"
+                            Margin="40, 10, 10, 10">
+                    <Button Style="{StaticResource style_button}"
+                            Name="btn_thong_tin"
+                            Content="Information"
+                            Height="35" Click="btn_thong_tin_Click">
+                    </Button>
+
+                    <Button Style="{StaticResource style_button}"
+                            Name="btn_tro_giup"
+                            Content="Help"
+                            Height="35" Click="btn_tro_giup_Click">
+                    </Button>
+
+                    <Button Style="{StaticResource style_button}"
+                            Name="btn_thoat"
+                            Height="35"
+                            Content="Exit Application" Click="btn_thoat_Click">
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+
+            <!--Giao diện kết nối công thức-->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!--Line one-->
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="0">
+                    <Canvas>
+                        <!--a² = b² + c² − 2bc.cos(A)-->
+                        <Border  Width="260" Height="60"
+                                 CornerRadius="10"
+                                 Background="#DFF3FF"
+                                 BorderBrush="#5AA9E6"
+                                 BorderThickness="2"
+                                 Canvas.Left="40"
+                                 Canvas.Top="20">
+                            <TextBlock Style="{StaticResource style_text_block}"
+                                       Text="a² = b² + c² − 2bc.cos(A)"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="22"
+                                       FontWeight="Bold">
+                            </TextBlock>
+                        </Border>
+
+                        <!--b² = a² + c² − 2ac.cos(B)-->
+                        <Border  Width="260" Height="60"
+                                 CornerRadius="10"
+                                 Background="#DFF3FF"
+                                 BorderBrush="#5AA9E6"
+                                 BorderThickness="2"
+                                 Canvas.Left="330" 
+                                 Canvas.Top="20">
+                            <TextBlock Style="{StaticResource style_text_block}"
+                                       Text="b² = a² + c² − 2ac.cos(B)"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="22"
+                                       FontWeight="Bold">
+                            </TextBlock>
+                        </Border>
+
+                        <!--c² = a² + b² − 2ab.cos(C)-->
+                        <Border  Width="260" Height="60"
+                                 CornerRadius="10"
+                                 Background="#DFF3FF"
+                                 BorderBrush="#5AA9E6"
+                                 BorderThickness="2"
+                                 Canvas.Left="620"
+                                 Canvas.Top="20">
+                            <TextBlock Style="{StaticResource style_text_block}"
+                                       Text="c² = a² + b² − 2ab.cos(C)"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="22"
+                                       FontWeight="Bold">
+                            </TextBlock>
+                        </Border>
+                    </Canvas>
+                </StackPanel>
+
+                <!--Line two-->
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="1">
+                    <Canvas>
+                        <!--hₐ = c sin(B)-->
+                        <Border  Width="260" Height="60"
+                                 CornerRadius="10"
+                                 Background="#DFF3FF"
+                                 BorderBrush="#5AA9E6"
+                                 BorderThickness="2"
+                                 Canvas.Left="40"
+                                 Canvas.Top="20">
+                            <TextBlock Style="{StaticResource style_text_block}"
+                                       Text="hₐ = c sin(B)"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="22"
+                                       FontWeight="Bold">
+                            </TextBlock>
+                        </Border>
+
+                        <!--hᵦ = a sin C-->
+                        <Border  Width="260" Height="60"
+                                 CornerRadius="10"
+                                 Background="#DFF3FF"
+                                 BorderBrush="#5AA9E6"
+                                 BorderThickness="2"
+                                 Canvas.Left="330" 
+                                 Canvas.Top="20">
+                            <TextBlock Style="{StaticResource style_text_block}"
+                                       Text="hᵦ = a sin C"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="22"
+                                       FontWeight="Bold">
+                            </TextBlock>
+                        </Border>
+
+                        <!--h𝚌 = b sin(A)-->
+                        <Border  Width="260" Height="60"
+                                 CornerRadius="10"
+                                 Background="#DFF3FF"
+                                 BorderBrush="#5AA9E6"
+                                 BorderThickness="2"
+                                 Canvas.Left="620"
+                                 Canvas.Top="20">
+                            <TextBlock Style="{StaticResource style_text_block}"
+                                       Text="h𝚌 = b sin(A)"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="22"
+                                       FontWeight="Bold">
+                            </TextBlock>
+                        </Border>
+                    </Canvas>
+                </StackPanel>
+
+                <!--Line for-->
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="3">
+                    <Canvas>
+                        <!--cos(A) = (b² + c² − a²) / (2bc)-->
+                        <Border  Width="260" Height="60"
+                                 CornerRadius="10"
+                                 Background="#DFF3FF"
+                                 BorderBrush="#5AA9E6"
+                                 BorderThickness="2"
+                                 Canvas.Left="40"
+                                 Canvas.Top="20">
+                            <TextBlock Style="{StaticResource style_text_block}"
+                                       Text="cos(A) = (b² + c² − a²)/(2bc)"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="22"
+                                       FontWeight="Bold">
+                            </TextBlock>
+                        </Border>
+
+                        <!--cos(A) = (b² + c² − a²) / (2bc)-->
+                        <Border  Width="260" Height="60"
+                                 CornerRadius="10"
+                                 Background="#DFF3FF"
+                                 BorderBrush="#5AA9E6"
+                                 BorderThickness="2"
+                                 Canvas.Left="330" 
+                                 Canvas.Top="20">
+                            <TextBlock Style="{StaticResource style_text_block}"
+                                       Text="cos(B) = (a² + c² − b²)/(2ac)"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="22"
+                                       FontWeight="Bold">
+                            </TextBlock>
+                        </Border>
+
+                        <!--cos(C) = (a² + b² − c²) / (2ab)-->
+                        <Border  Width="260" Height="60"
+                                 CornerRadius="10"
+                                 Background="#DFF3FF"
+                                 BorderBrush="#5AA9E6"
+                                 BorderThickness="2"
+                                 Canvas.Left="620"
+                                 Canvas.Top="20">
+                            <TextBlock Style="{StaticResource style_text_block}"
+                                       Text="cos(C) = (a² + b² − c²)/(2ab)"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="22"
+                                       FontWeight="Bold">
+                            </TextBlock>
+                        </Border>
+                    </Canvas>
+                </StackPanel>
+
+                <!--Line there-->
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="2">
+                    <Canvas>
+                        <!-- Hình tròn 1 -->
+                        <Grid Width="80" Height="80"
+                              Canvas.Left="130"
+                              Canvas.Top="10">
+                            <Ellipse Fill="#DFF3FF"
+                                     Stroke="#5AA9E6"
+                                     StrokeThickness="3"/>
+                            <TextBlock Text="A"
+                                           FontSize="30"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontFamily="Cambria Math"/>
+                        </Grid>
+
+                        <!-- Hình tròn 2 -->
+                        <Grid Width="80" Height="80"
+                              Canvas.Left="420"
+                              Canvas.Top="10">
+                            <Ellipse Fill="#DFF3FF"
+                                     Stroke="#5AA9E6"
+                                     StrokeThickness="3"/>
+                            <TextBlock Text="B"
+                                           FontSize="30"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontFamily="Cambria Math"/>
+                        </Grid>
+
+                        <!-- Hình tròn 3 -->
+                        <Grid Width="80" Height="80"
+                              Canvas.Left="720"
+                              Canvas.Top="10">
+                            <Ellipse Fill="#DFF3FF"
+                                     Stroke="#5AA9E6"
+                                     StrokeThickness="3"/>
+                            <TextBlock Text="C"
+                                       FontSize="30"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontFamily="Cambria Math"/>
+                        </Grid>
+                    </Canvas>
+                </StackPanel>
+
+                <!--Line six-->
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="5">
+                    <Canvas>
+                        <!-- Hình tròn 1 -->
+                        <Grid Width="80" Height="80"
+                              Canvas.Left="130"
+                              Canvas.Top="10">
+                            <Ellipse Fill="#DFF3FF"
+                                     Stroke="#5AA9E6"
+                                     StrokeThickness="3"/>
+                            <TextBlock Text="a"
+                                           FontSize="30"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontFamily="Cambria Math"/>
+                        </Grid>
+
+                        <!-- Hình tròn 2 -->
+                        <Grid Width="80" Height="80"
+                              Canvas.Left="420"
+                              Canvas.Top="10">
+                            <Ellipse Fill="#DFF3FF"
+                                     Stroke="#5AA9E6"
+                                     StrokeThickness="3"/>
+                            <TextBlock Text="b"
+                                           FontSize="30"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontFamily="Cambria Math"/>
+                        </Grid>
+
+                        <!-- Hình tròn 3 -->
+                        <Grid Width="80" Height="80"
+                              Canvas.Left="720"
+                              Canvas.Top="10">
+                            <Ellipse Fill="#DFF3FF"
+                                     Stroke="#5AA9E6"
+                                     StrokeThickness="3"/>
+                            <TextBlock Text="c"
+                                       FontSize="30"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontFamily="Cambria Math"/>
+                        </Grid>
+
+                    </Canvas>
+                </StackPanel>
+
+                <!--Line fire-->
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="4">
+                    <Canvas>
+                        <!--a / sin A = b / sin B-->
+                        <Border  Width="260" Height="60"
+                                 CornerRadius="10"
+                                 Background="#DFF3FF"
+                                 BorderBrush="#5AA9E6"
+                                 BorderThickness="2"
+                                 Canvas.Left="40"
+                                 Canvas.Top="20">
+                            <TextBlock Style="{StaticResource style_text_block}"
+                                       Text="a / sin A = b / sin B"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="22"
+                                       FontWeight="Bold">
+                            </TextBlock>
+                        </Border>
+
+                        <!--b / sin B = c / sin C-->
+                        <Border  Width="260" Height="60"
+                                 CornerRadius="10"
+                                 Background="#DFF3FF"
+                                 BorderBrush="#5AA9E6"
+                                 BorderThickness="2"
+                                 Canvas.Left="330" 
+                                 Canvas.Top="20">
+                            <TextBlock Style="{StaticResource style_text_block}"
+                                       Text="b / sin B = c / sin C)"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="22"
+                                       FontWeight="Bold">
+                            </TextBlock>
+                        </Border>
+
+                        <!--A + B + C = 180° -->
+                        <Border  Width="260" Height="60"
+                                 CornerRadius="10"
+                                 Background="#DFF3FF"
+                                 BorderBrush="#5AA9E6"
+                                 BorderThickness="2"
+                                 Canvas.Left="620"
+                                 Canvas.Top="20">
+                            <TextBlock Style="{StaticResource style_text_block}"
+                                       Text="A + B + C = 180°"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="22"
+                                       FontWeight="Bold">
+                            </TextBlock>
+                        </Border>
+                    </Canvas>
+                </StackPanel>
+
+                <!--Line seven-->
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="6">
+                    <Canvas>
+                        <!--a / sin A = 2R-->
+                        <Border  Width="260" Height="60"
+                                 CornerRadius="10"
+                                 Background="#DFF3FF"
+                                 BorderBrush="#5AA9E6"
+                                 BorderThickness="2"
+                                 Canvas.Left="40"
+                                 Canvas.Top="20">
+                            <TextBlock Style="{StaticResource style_text_block}"
+                                       Text="a / sin A = 2R"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="22"
+                                       FontWeight="Bold">
+                            </TextBlock>
+                        </Border>
+
+                        <!--p = (a + b + c) / 2-->
+                        <Border  Width="260" Height="60"
+                                 CornerRadius="10"
+                                 Background="#DFF3FF"
+                                 BorderBrush="#5AA9E6"
+                                 BorderThickness="2"
+                                 Canvas.Left="330" 
+                                 Canvas.Top="20">
+                            <TextBlock Style="{StaticResource style_text_block}"
+                                       Text="p = (a + b + c) / 2"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="22"
+                                       FontWeight="Bold">
+                            </TextBlock>
+                        </Border>
+
+                        <!--S = √[ p(p − a)(p − b)(p − c) ]-->
+                        <Border  Width="260" Height="60"
+                                 CornerRadius="10"
+                                 Background="#DFF3FF"
+                                 BorderBrush="#5AA9E6"
+                                 BorderThickness="2"
+                                 Canvas.Left="620"
+                                 Canvas.Top="20">
+                            <TextBlock Style="{StaticResource style_text_block}"
+                                       Text="S = √p(p − a)(p − b)(p − c)"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="22"
+                                       FontWeight="Bold">
+                            </TextBlock>
+                        </Border>
+                    </Canvas>
+                </StackPanel>
+
+                <!--Line eight-->
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="7">
+                    <Canvas>
+                        <!--S = (a b c) / (4R)-->
+                        <Border  Width="260" Height="60"
+                                 CornerRadius="10"
+                                 Background="#DFF3FF"
+                                 BorderBrush="#5AA9E6"
+                                 BorderThickness="2"
+                                 Canvas.Left="40"
+                                 Canvas.Top="20">
+                            <TextBlock Style="{StaticResource style_text_block}"
+                                       Text="S = (a b c) / (4R)"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="22"
+                                       FontWeight="Bold">
+                            </TextBlock>
+                        </Border>
+
+                        <!-- Hình tròn 1 -->
+                        <Grid Width="80" Height="80"
+                              Canvas.Left="340"
+                              Canvas.Top="10">
+                            <Ellipse Fill="#DFF3FF"
+                                     Stroke="#5AA9E6"
+                                     StrokeThickness="3"/>
+                            <TextBlock Text="S"
+                                       FontSize="30"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontFamily="Cambria Math"/>
+                        </Grid>
+
+                        <!-- Hình tròn 2 -->
+                        <Grid Width="80" Height="80"
+                              Canvas.Left="510"
+                              Canvas.Top="10">
+                            <Ellipse Fill="#DFF3FF"
+                                     Stroke="#5AA9E6"
+                                     StrokeThickness="3"/>
+                            <TextBlock Text="h"
+                                           FontSize="30"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontFamily="Cambria Math"/>
+                        </Grid>
+
+
+                        <!--S = p r-->
+                        <Border  Width="260" Height="60"
+                                 CornerRadius="10"
+                                 Background="#DFF3FF"
+                                 BorderBrush="#5AA9E6"
+                                 BorderThickness="2"
+                                 Canvas.Left="620"
+                                 Canvas.Top="20">
+                            <TextBlock Style="{StaticResource style_text_block}"
+                                       Text="S = p r"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="22"
+                                       FontWeight="Bold">
+                            </TextBlock>
+                        </Border>
+                    </Canvas>
+                </StackPanel>
+
+                <!--Line nine-->
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="8">
+                    <Canvas>
+                        <!--S = ½ a hₐ-->
+                        <Border  Width="260" Height="60"
+                                 CornerRadius="10"
+                                 Background="#DFF3FF"
+                                 BorderBrush="#5AA9E6"
+                                 BorderThickness="2"
+                                 Canvas.Left="40"
+                                 Canvas.Top="20">
+                            <TextBlock Style="{StaticResource style_text_block}"
+                                       Text="S = ½ a hₐ"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="22"
+                                       FontWeight="Bold">
+                            </TextBlock>
+                        </Border>
+
+                        <!--S = ½ b h_b-->
+                        <Border  Width="260" Height="60"
+                                 CornerRadius="10"
+                                 Background="#DFF3FF"
+                                 BorderBrush="#5AA9E6"
+                                 BorderThickness="2"
+                                 Canvas.Left="330" 
+                                 Canvas.Top="20">
+                            <TextBlock Style="{StaticResource style_text_block}"
+                                       Text="S = ½ b h_b2"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="22"
+                                       FontWeight="Bold">
+                            </TextBlock>
+                        </Border>
+
+                        <!--S = ½ c h_c-->
+                        <Border  Width="260" Height="60"
+                                 CornerRadius="10"
+                                 Background="#DFF3FF"
+                                 BorderBrush="#5AA9E6"
+                                 BorderThickness="2"
+                                 Canvas.Left="620"
+                                 Canvas.Top="20">
+                            <TextBlock Style="{StaticResource style_text_block}"
+                                       Text="S = ½ c h_c"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="22"
+                                       FontWeight="Bold">
+                            </TextBlock>
+                        </Border>
+                    </Canvas>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
